@@ -1,10 +1,8 @@
-// Radio group functionality
 $(document).ready(function(){
 
     const url = 'http://localhost:6578';
+    let activeState = ''
 
-    let activeState = '';
-    
     const fixedRateButton = $('#fixed-rate-button')
     const fixedRate = $('#fixed-rate')
     const timeOfUseButton = $('#time-of-use-button')
@@ -15,14 +13,12 @@ $(document).ready(function(){
         fixedRate.css('display', 'block');
         timeOfUse.css('display', 'none');
         activeState = 'fixed-rate';
-        calculate.prop('disabled', false);
     });
     
     timeOfUseButton.click(() => {
         fixedRate.css('display', 'none');
         timeOfUse.css('display', 'block');
         activeState = 'time-of-use';
-        calculate.prop('disabled', false);
     });
 
     // Create data array from file
@@ -30,8 +26,37 @@ $(document).ready(function(){
         const data = await readXlsxFile($('#file-input').prop('files')[0]);
         return data;
     };
-
+    
+    function ensureFormFilled(activeState) {
+        console.log('ensure')
+        const stndItems = '#date-start, #date-end, #solar-collected, #solar-tariff-rate, #daily-charge'
+        if (activeState == 'fixed-rate') {
+            console.log('fixed-rate')
+            const items = $(stndItems + ', #fixed-rate-input')
+            let r = true;
+            items.each(function() {
+                // console.log($(this))
+                if ($(this).val() == '') {
+                    r = false;
+                    return false
+                }
+            })
+            return r;
+        } else {
+            return false;
+        }
+    }
+    
     calculate.click(async () => {
+
+        if (!ensureFormFilled(activeState)) {
+            $('#fill-form').css('display', 'block')
+            console.log('poo')
+            return
+        } else {
+            console.log('no')
+            $('#fill-form').css('display', 'none')
+        }
 
         const dataArray = await createDataArray();
 
@@ -42,14 +67,15 @@ $(document).ready(function(){
                 'dateStart': $('#date-start').val(),
                 'dateEnd': $('#date-end').val(),
                 'data': dataArray,
-                'solarCollected': parseInt($('#solar-collected').val(), 10),
-                'solarTariff': parseInt($('#solar-tariff-rate').val(), 10),
+                'solarCollected': +$('#solar-collected').val(),
+                'solarTariff': +$('#solar-tariff-rate').val(),
+                'dailyCharge': +$('#daily-charge').val(),
             };
 
             if (activeState == 'fixed-rate') {
                 d = {
                     ...d,
-                    'fixed-rate': parseInt($('#fixed-rate-input').val(), 10),
+                    'fixedRate': +$('#fixed-rate-input').val(),
                 }
             } else if (activeState == 'time-of-use') {
                 d = {
@@ -81,4 +107,3 @@ $(document).ready(function(){
 
 
 });
-

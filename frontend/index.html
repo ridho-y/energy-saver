@@ -67,6 +67,16 @@
                 <div class="input-group w-25">
                     <span class="input-group-text" style="width: 130px">Solar tariff rate</span>
                     <input id="solar-tariff-rate" type="number" class="form-control" placeholder="$/kWh">
+                    <div class="invalid-feedback">
+                    </div>
+                </div>
+                <br>
+
+                <div class="input-group w-25">
+                    <span class="input-group-text" style="width: 130px">Daily charge</span>
+                    <input id="daily-charge" type="number" class="form-control" placeholder="$">
+                    <div class="invalid-feedback">
+                    </div>
                 </div>
                 <br>
 
@@ -74,6 +84,7 @@
                     <div class="input-group w-25">
                         <span class="input-group-text" style="width: 130px">Rate</span>
                         <input id="fixed-rate-input" type="number" class="form-control" placeholder="$/kWh">
+                        <div class="invalid-feedback"></div>
                     </div>
                     <br>
                 </div>
@@ -84,139 +95,131 @@
                     <h4>Summer Period: 1 Nov - 31 Mar</h4>
                     <div class="indent-in-1">
                         <h5>Weekday</h5>
-                        <div class="input-group mb-3 w-75">
-                            <span class="input-group-text">Peak</span>
-                            <input id="s-w-p-p" type="number" class="form-control" placeholder="$">
-                            <span class="input-group-text">Hour Start</span>
-                            <input id="s-w-p-hs" type="number" class="form-control">
-                            <span class="input-group-text">Hour End</span>
-                            <input id="s-w-p-he" type="number" class="form-control">
+                        <div id="summer-weekday-tou">
+                            <div class="input-group mb-3 w-75">
+                                <span class="input-group-text">Peak</span>
+                                <input type="number" class="sum wday peak cost form-control" placeholder="$"><div class="invalid-feedback"></div>
+                                <span class="input-group-text">Times</span>
+                                <input type="text" class="sum wday peak times form-control"><div class="invalid-feedback"></div>
+                            </div>
+                            <div class="input-group mb-3 w-75">
+                                <span class="input-group-text">Off-peak</span>
+                                <input type="number" class="sum wday offp cost form-control" placeholder="$"><div class="invalid-feedback"></div>
+                                <span class="input-group-text">Times</span>
+                                <input type="text" class="sum wday offp times form-control"><div class="invalid-feedback"></div>
+                            </div>
+                            <div class="input-group mb-3 w-75">
+                                <span class="input-group-text">Shoulder</span>
+                                <input type="number" class="sum wday sh cost form-control" placeholder="$"><div class="invalid-feedback"></div>
+                                <span class="input-group-text">Times</span>
+                                <input type="text" class="sum wday sh times form-control"><div class="invalid-feedback"></div>
+                            </div>
                         </div>
-                        <div class="input-group mb-3 w-75">
-                            <span class="input-group-text">Off-peak</span>
-                            <input id="s-w-op-p" type="number" class="form-control" placeholder="$">
-                            <span class="input-group-text">Hour Start</span>
-                            <input id="s-w-op-hs" type="number" class="form-control">
-                            <span class="input-group-text">Hour End</span>
-                            <input id="s-w-op-he" type="number" class="form-control">
-                        </div>
-                        <div class="input-group mb-3 w-75">
-                            <span class="input-group-text">Shoulder</span>
-                            <input id="s-w-s-p" type="number" class="form-control" placeholder="$">
-                            <span class="input-group-text">Hour Start</span>
-                            <input id="s-w-s-hs" type="number" class="form-control">
-                            <span class="input-group-text">Hour End</span>
-                            <input id="s-w-s-he" type="number" class="form-control">
-                        </div>
+                        <div class="invalid-feedback"></div><br>
+
                         <h5>Weekend</h5>
-                        <div class="input-group mb-3 w-75">
-                            <span class="input-group-text">Off-peak</span>
-                            <input id="s-we-op-p" type="number" class="form-control" placeholder="$">
-                            <span class="input-group-text">Hour Start</span>
-                            <input id="s-we-op-hs" type="number" class="form-control">
-                            <span class="input-group-text">Hour End</span>
-                            <input id="s-we-op-he" type="number" class="form-control">
+                        <div id="summer-weekend-tou">
+                            <div class="input-group mb-3 w-75">
+                                <span class="input-group-text">Off-peak</span>
+                                <input type="number" class="sum wend offp cost form-control" placeholder="$"><div class="invalid-feedback"></div>
+                                <span class="input-group-text">Times</span>
+                                <input type="text" class="sum wend offp times form-control"><div class="invalid-feedback"></div>
+                            </div>
+                            <div class="input-group mb-3 w-75">
+                                <span class="input-group-text">Shoulder</span>
+                                <input type="number" class="sum wend sh cost form-control" placeholder="$"><div class="invalid-feedback"></div>
+                                <span class="input-group-text">Times</span>
+                                <input type="text" class="sum wend sh times form-control"><div class="invalid-feedback"></div>
+                            </div>
                         </div>
-                        <div class="input-group mb-3 w-75">
-                            <span class="input-group-text">Shoulder</span>
-                            <input id="s-we-s-p" type="number" class="form-control" placeholder="$">
-                            <span class="input-group-text">Hour Start</span>
-                            <input id="s-we-s-hs" type="number" class="form-control">
-                            <span class="input-group-text">Hour End</span>
-                            <input id="s-we-s-he" type="number" class="form-control">
-                        </div>
+                        <div class="invalid-feedback"></div>
                     </div>
+
+
                     <br>
                     <h4>Autumn Period: 1 Apr - 31 May</h4>
-                    <div class="indent-in-1">
+                    <div id="autumn-tou indent-in-1">
                         <div class="input-group mb-3 w-75">
                             <span class="input-group-text">Off-peak</span>
-                            <input id="a-op-p" type="number" class="form-control" placeholder="$">
-                            <span class="input-group-text">Hour Start</span>
-                            <input id="a-op-hs" type="number" class="form-control">
-                            <span class="input-group-text">Hour End</span>
-                            <input id="a-op-he" type="number" class="form-control">
+                            <input type="number" class="aut offp cost form-control" placeholder="$"><div class="invalid-feedback"></div>
+                            <span class="input-group-text">Times</span>
+                            <input type="text" class="aut offp times form-control"><div class="invalid-feedback"></div>
                         </div>
-                        <div id="non-seasonal-shoulder" class="input-group mb-3 w-75">
+                        <div class="input-group mb-3 w-75">
                             <span class="input-group-text">Shoulder</span>
-                            <input id="a-s-p" type="number" class="form-control" placeholder="$">
-                            <span class="input-group-text">Hour Start</span>
-                            <input id="a-s-hs" type="number" class="form-control">
-                            <span class="input-group-text">Hour End</span>
-                            <input id="a-s-he" type="number" class="form-control">
+                            <input type="number" class="aut sh cost form-control" placeholder="$"><div class="invalid-feedback"></div>
+                            <span class="input-group-text">Times</span>
+                            <input type="text" class="aut sh times form-control"><div class="invalid-feedback"></div>
                         </div>
                     </div>
+                    <div class="invalid-feedback"></div>
+
                     <br>
                     <h4>Winter Period: 1 Jun - 31 Aug</h4>
                     <div class="indent-in-1">
                         <h5>Weekday</h5>
-                        <div class="input-group mb-3 w-75">
-                            <span class="input-group-text">Peak</span>
-                            <input id="w-w-p-p" type="number" class="form-control" placeholder="$">
-                            <span class="input-group-text">Hour Start</span>
-                            <input id="w-w-p-hs" type="number" class="form-control">
-                            <span class="input-group-text">Hour End</span>
-                            <input id="w-w-p-he" type="number" class="form-control">
+                        <div id="winter-weekday-tou">
+                            <div class="input-group mb-3 w-75">
+                                <span class="input-group-text">Peak</span>
+                                <input type="number" class="win wday peak cost form-control" placeholder="$"><div class="invalid-feedback"></div>
+                                <span class="input-group-text">Times</span>
+                                <input type="text" class="win wday peak times form-control"><div class="invalid-feedback"></div>
+                            </div>
+                            <div class="input-group mb-3 w-75">
+                                <span class="input-group-text">Off-peak</span>
+                                <input type="number" class="win wday offp cost form-control" placeholder="$"><div class="invalid-feedback"></div>
+                                <span class="input-group-text">Times</span>
+                                <input type="text" class="win wday offp times form-control"><div class="invalid-feedback"></div>
+                            </div>
+                            <div class="input-group mb-3 w-75">
+                                <span class="input-group-text">Shoulder</span>
+                                <input type="number" class="win wday sh cost form-control" placeholder="$"><div class="invalid-feedback"></div>
+                                <span class="input-group-text">Times</span>
+                                <input type="text" class="win wday sh times form-control"><div class="invalid-feedback"></div>
+                            </div>
                         </div>
-                        <div class="input-group mb-3 w-75">
-                            <span class="input-group-text">Off-peak</span>
-                            <input id="w-w-op-p" type="number" class="form-control" placeholder="$">
-                            <span class="input-group-text">Hour Start</span>
-                            <input id="w-w-op-hs" type="number" class="form-control">
-                            <span class="input-group-text">Hour End</span>
-                            <input id="w-w-op-he" type="number" class="form-control">
-                        </div>
-                        <div class="input-group mb-3 w-75">
-                            <span class="input-group-text">Shoulder</span>
-                            <input id="w-w-s-p" type="number" class="form-control" placeholder="$">
-                            <span class="input-group-text">Hour Start</span>
-                            <input id="w-w-s-hs" type="number" class="form-control">
-                            <span class="input-group-text">Hour End</span>
-                            <input id="w-w-s-he" type="number" class="form-control">
-                        </div>
+                        <div class="invalid-feedback"></div><br>
+                        
                         <h5>Weekend</h5>
-                        <div class="input-group mb-3 w-75">
-                            <span class="input-group-text">Off-peak</span>
-                            <input id="w-we-op-p" type="number" class="form-control" placeholder="$">
-                            <span class="input-group-text">Hour Start</span>
-                            <input id="w-we-op-hs" type="number" class="form-control">
-                            <span class="input-group-text">Hour End</span>
-                            <input id="w-we-op-he" type="number" class="form-control">
+                        <div id="winter-weekday-tou">
+                            <div class="input-group mb-3 w-75">
+                                <span class="input-group-text">Off-peak</span>
+                                <input type="number" class="win wend offp cost form-control" placeholder="$"><div class="invalid-feedback"></div>
+                                <span class="input-group-text">Times</span>
+                                <input type="text" class="win wend offp times form-control"><div class="invalid-feedback"></div>
+                            </div>
+                            <div class="input-group mb-3 w-75">
+                                <span class="input-group-text">Shoulder</span>
+                                <input type="number" class="win wend sh cost form-control" placeholder="$"><div class="invalid-feedback"></div>
+                                <span class="input-group-text">Times</span>
+                                <input type="text" class="win wend sh times form-control"><div class="invalid-feedback"></div>
+                            </div>
                         </div>
-                        <div class="input-group mb-3 w-75">
-                            <span class="input-group-text">Shoulder</span>
-                            <input id="w-we-s-p" type="number" class="form-control" placeholder="$">
-                            <span class="input-group-text">Hour Start</span>
-                            <input id="w-we-s-hs" type="number" class="form-control">
-                            <span class="input-group-text">Hour End</span>
-                            <input id="w-we-s-he" type="number" class="form-control">
-                        </div>
+                        <div class="invalid-feedback"></div>
                     </div>
                     <br>
                     <h4>Spring Period: 1 Sep - 31 Oct</h4>
-                    <div class="indent-in-1">
+                    <div id="sprint-tou indent-in-1">
                         <div class="input-group mb-3 w-75">
                             <span class="input-group-text">Off-peak</span>
-                            <input id="sp-op-p" type="number" class="form-control" placeholder="$">
-                            <span class="input-group-text">Hour Start</span>
-                            <input id="sp-op-hs" type="number" class="form-control">
-                            <span class="input-group-text">Hour End</span>
-                            <input id="sp-op-he" type="number" class="form-control">
+                            <input type="number" class="spr offp cost form-control" placeholder="$"><div class="invalid-feedback"></div>
+                            <span class="input-group-text">Times</span>
+                            <input type="text" class="spr offp times form-control"><div class="invalid-feedback"></div>
                         </div>
-                        <div id="non-seasonal-shoulder" class="input-group mb-3 w-75">
+                        <div class="input-group mb-3 w-75">
                             <span class="input-group-text">Shoulder</span>
-                            <input id="sp-s-p" type="number" class="form-control" placeholder="$">
-                            <span class="input-group-text">Hour Start</span>
-                            <input id="sp-s-hs" type="number" class="form-control">
-                            <span class="input-group-text">Hour End</span>
-                            <input id="sp-s-he" type="number" class="form-control">
+                            <input type="number" class="spr sh cost form-control" placeholder="$"><div class="invalid-feedback"></div>
+                            <span class="input-group-text">Times</span>
+                            <input type="text" class="spr sh times form-control"><div class="invalid-feedback"></div>
                         </div>
                     </div>
+                    <div class="invalid-feedback"></div>
                     <br>
                 </div>
 
                 <hr><br>
-                <button id="calculate" type="submit" class="btn btn-primary" disabled>Calculate your bill</button>
+                <div id="fill-form" style="display: none">Please complete all components</div>
+                <button id="calculate" type="button" class="btn btn-primary">Calculate your bill</button>
             </form>
             <br><br><br><br><br><br><br><br><br><br><br><br>
 
