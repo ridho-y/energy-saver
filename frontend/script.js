@@ -27,38 +27,131 @@ $(document).ready(function(){
         return data;
     };
     
-    function ensureFormFilled(activeState) {
-        console.log('ensure')
+    function formFilled(activeState) {
+
         const stndItems = '#date-start, #date-end, #solar-collected, #solar-tariff-rate, #daily-charge'
-        if (activeState == 'fixed-rate') {
-            console.log('fixed-rate')
+        if (activeState === 'fixed-rate') {
             const items = $(stndItems + ', #fixed-rate-input')
-            let r = true;
+            let r = true
             items.each(function() {
-                // console.log($(this))
                 if ($(this).val() == '') {
-                    r = false;
+                    r = false
                     return false
                 }
             })
             return r;
+        } else if (activeState === 'time-of-use') {
+            console.log('Time of Use Checker')
+            const items = $(stndItems + ', .sum, .aut, .win, .spr')
+            let r = true
+            items.each(function() {
+                console.log($(this))
+                console.log($(this).val())
+                if ($(this).val() == '') {
+                    console.log('yes')
+                    r = false
+                    return false
+                } 
+            })
+            console.log('here')
+            return r
         } else {
             return false;
         }
     }
+
+    function timeOfUseData() {
+
+        const timeLister = (num) => {
+            let times = []
+            if (num.includes(',')) {
+                let commsep = num.split(',');
+                for (let i = 0; i < commsep.length; i++) {
+                    if (commsep[i].includes('-')) {
+                        t = commsep[i].split('-')
+                        for (let j = +t[0]; j <= t[1]; j++) {
+                            times.push(j)
+                        }
+                    } else {
+                        times.push(+commsep[i])
+                    }
+                }
+            } else {
+                if (num.includes('-')) {
+                    t = num.split('-')
+                    for (let j = +t[0]; j <= t[1]; j++) {
+                        times.push(j)
+                    }
+                } else {
+                    times.push(+num)
+                }
+            }
+
+            return times;
+        }
+
+        data = {
+            'summer': {
+                'weekday': { 
+                    'peak': {'cost': +$('.sum.wday.peak.cost').val(), 'times': timeLister($('.sum.wday.peak.times').val())},
+                    'off-peak': {'cost': +$('.sum.wday.offp.cost').val(), 'times': timeLister($('.sum.wday.offp.times').val())},
+                    'shoulder': {'cost': +$('.sum.wday.sh.cost').val(), 'times': timeLister($('.sum.wday.sh.times').val())}
+                    },
+                'weekend': {
+                    'off-peak': {'cost': +$('.sum.wend.offp.cost').val(), 'times': timeLister($('.sum.wend.offp.times').val())},
+                    'shoulder': {'cost': +$('.sum.wend.sh.cost').val(), 'times': timeLister($('.sum.wend.sh.times').val())}
+                    }
+                },
+            'autumn': {
+                'weekday': { 
+                    'off-peak': {'cost': +$('.aut.offp.cost').val(), 'times': timeLister($('.aut.offp.times').val())},
+                    'shoulder': {'cost': +$('.aut.sh.cost').val(), 'times': timeLister($('.aut.sh.times').val())},
+                    },
+                'weekend': {
+                    'off-peak': {'cost': +$('.aut.offp.cost').val(), 'times': timeLister($('.aut.offp.times').val())},
+                    'shoulder': {'cost': +$('.aut.sh.cost').val(), 'times': timeLister($('.aut.sh.times').val())},
+                    }
+                },
+            'winter': {
+                'weekday': { 
+                    'peak': {'cost': +$('.win.wday.peak.cost').val(), 'times': timeLister($('.win.wday.peak.times').val())},
+                    'off-peak': {'cost': +$('.win.wday.offp.cost').val(), 'times': timeLister($('.win.wday.offp.times').val())},
+                    'shoulder': {'cost': +$('.win.wday.sh.cost').val(), 'times': timeLister($('.win.wday.sh.times').val())}
+                    },
+                'weekend': {
+                    'off-peak': {'cost': +$('.win.wend.offp.cost').val(), 'times': timeLister($('.win.wend.offp.times').val())},
+                    'shoulder': {'cost': +$('.win.wend.sh.cost').val(), 'times': timeLister($('.win.wend.sh.times').val())}
+                    }
+                },
+            'spring': {
+                'weekday': { 
+                    'off-peak': {'cost': +$('.spr.offp.cost').val(), 'times': timeLister($('.spr.offp.times').val())},
+                    'shoulder': {'cost': +$('.spr.sh.cost').val(), 'times': timeLister($('.spr.sh.times').val())},
+                    },
+                'weekend': {
+                    'off-peak': {'cost': +$('.spr.offp.cost').val(), 'times': timeLister($('.spr.offp.times').val())},
+                    'shoulder': {'cost': +$('.spr.sh.cost').val(), 'times': timeLister($('.spr.sh.times').val())},
+                    }
+                },
+            }
+
+        return data;
+    }
     
     calculate.click(async () => {
-
-        if (!ensureFormFilled(activeState)) {
+        
+        if (!formFilled(activeState)) {
             $('#fill-form').css('display', 'block')
-            console.log('poo')
+            console.log('Form is not filled!')
             return
         } else {
-            console.log('no')
             $('#fill-form').css('display', 'none')
+            console.log('Form is filled!')
+            
         }
 
         const dataArray = await createDataArray();
+        // const dataArray = []
 
         const getVals = new Promise((res, rej) => {
             
@@ -80,6 +173,7 @@ $(document).ready(function(){
             } else if (activeState == 'time-of-use') {
                 d = {
                     ...d,
+                    'timeOfUse': timeOfUseData()
                 }
             } else {
                 throw new Error('Invalid active state');
@@ -89,6 +183,7 @@ $(document).ready(function(){
         })
         
         getVals.then(d => {
+            console.log(d)
             fetch(url, {
                 method: 'POST',
                 headers: {

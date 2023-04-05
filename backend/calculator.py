@@ -1,12 +1,16 @@
 from datetime import datetime, timedelta
+from helpers import dayCost
 
 def calculate(data):
     if data['state'] == 'fixed-rate':
         return fixedRateCalculator(data)
+    elif data['state'] == 'time-of-use':
+        return timeOfUseCalculator(data)
     else:
         return {'error': 'Invalid calculation type'}
 
 def fixedRateCalculator(data):
+
     dataArray, solarCollected, solarTariff, dailyCharge, rate = data['data'], data['solarCollected'], data['solarTariff'], data['dailyCharge'], data['fixedRate']
     
     total = 0
@@ -18,17 +22,18 @@ def fixedRateCalculator(data):
 
     return {'total': total}
 
-# def timeOfUseCalculator(data):
 
+def timeOfUseCalculator(data):
 
+    dataArray, dateStart, solarCollected, solarTariff, dailyCharge, rate = data['data'], data['dateStart'], data['solarCollected'], data['solarTariff'], data['dailyCharge'], data['timeOfUse']
+    
+    total = 0
+    
+    date = datetime.strptime(dateStart, '%Y-%m-%d')
+    for energyUsePerHalfHr in dataArray:
+        total += dayCost(date, dailyCharge, energyUsePerHalfHr, rate)
+        date += timedelta(days=1)
 
-# # TIME OF USE CALCULATOR
+    total -= solarCollected * solarTariff
 
-# if __name__ == '__main__':
-#     test1 = '2022-12-01'
-#     test2 = '2022-12-01'
-
-#     date1 = datetime.strptime(test1, '%Y-%m-%d')
-#     date2 = datetime.strptime(test2, '%Y-%m-%d')
-#     if date2 < date1:
-#         print('lol')
+    return {'total': total}
