@@ -14,6 +14,10 @@ def form_data():
     data = request.get_json()
     return(dumps(calculate(data)))
 
+@app.route('/yellow')
+def index():
+  return dumps({'hello': 'wow'})
+
 if __name__ == "__main__":
     app.run(port=config.port)
 
