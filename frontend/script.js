@@ -4,7 +4,7 @@ $(document).ready(function(){
     $('[data-toggle="tooltip"]').tooltip();
 
 
-    const url = 'http://localhost:6578';
+    const url = 'https://energy-saver-production.up.railway.app/';
     let activeState = ''
 
     const fixedRateButton = $('#fixed-rate-button')
