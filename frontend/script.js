@@ -45,19 +45,14 @@ $(document).ready(function(){
             })
             return r;
         } else if (activeState === 'time-of-use') {
-            console.log('Time of Use Checker')
             const items = $(stndItems + ', .sum, .aut, .win, .spr')
             let r = true
             items.each(function() {
-                console.log($(this))
-                console.log($(this).val())
                 if ($(this).val() == '') {
-                    console.log('yes')
                     r = false
                     return false
                 } 
             })
-            console.log('here')
             return r
         } else {
             return false;
@@ -146,12 +141,9 @@ $(document).ready(function(){
         
         if (!formFilled(activeState)) {
             $('#fill-form').css('display', 'block')
-            console.log('Form is not filled!')
             return
         } else {
             $('#fill-form').css('display', 'none')
-            console.log('Form is filled!')
-            
         }
 
         const dataArray = await createDataArray();
@@ -187,7 +179,6 @@ $(document).ready(function(){
         })
         
         getVals.then(d => {
-            console.log(d)
             fetch(url, {
                 method: 'POST',
                 headers: {
@@ -196,7 +187,10 @@ $(document).ready(function(){
                 },
                 body: JSON.stringify(d)
             }).then(res => res.json())
-            .then(res => console.log(res))
+            .then(res => {
+                console.log(res.total)
+                $('#cost').text('Your bill will cost $' + res.total.toFixed(2))
+            })
             .catch((e) => {
                 throw new Error(e);
             })
