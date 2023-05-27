@@ -1,0 +1,13 @@
+version: 1
+services:
+  web:
+    builder:
+      name: python
+      version: 3.9
+    routes:
+      - src: /
+        dest: web
+    env:
+      - FLASK_APP=server.py
+    command:
+      - bash -c "cd backend/src && python3 -m server"
