@@ -14,16 +14,16 @@ label {
     padding: 20px;
 }
 
-.input-group-text {
+/* .input-group-text {
     width: 100px;
-}
+} */
 
-.input-group-text-medium {
+/* .input-group-text-medium {
     width: 118px;
 }
 .input-group-text-large {
     width: 217px;
-}
+} */
 
 #non-seasonal-shoulder {
     margin-bottom: 0 !important; 
@@ -31,4 +31,21 @@ label {
 
 #fixed-rate, #time-of-use {
     display: none;
+}
+
+.input-group {
+    max-width: 100%;
+}
+
+input {
+    min-width: 50px !important;
+    /* max-width: 100%; */
+    /* min-width: 300px; */
+    /* max-width: 400px */
+}
+
+@media (max-width: 600px) {
+    * {
+        font-size: 11px;
+    }
 }

@@ -22,20 +22,22 @@
         <br><br>
         <main>
             <form class="needs-validation" novalidate>
-                <div class="input-group w-25">
+                <div class="input-group">
                     <span class="input-group-text">Date start</span>
-                    <input id="date-start" type="date" class="form-control" placeholder="Date Start" aria-label="Date End">
+                    <input id="date-start" type="date" class="form-control" placeholder="Date Start" aria-label="Date End" >
+                    <div class="invalid-feedback">
+                    </div>
                 </div>
-                
+    
                 <br>
-                <div class="input-group w-25">
+                <div class="input-group">
                     <span class="input-group-text">Date end</span>
                     <input id="date-end" type="date" class="form-control" placeholder="Date End" aria-label="Date End">
                     <div class="invalid-feedback">
                     </div>
                 </div>
                 <br>
-                <div class="input-group w-50">
+                <div class="input-group">
                     <span class="input-group-text input-group-text-large">Solar energy accumulated</span>
                     <input id="solar-collected" type="number" class="form-control" placeholder="kWh">
                     <div class="invalid-feedback">
@@ -43,8 +45,8 @@
                 </div>
                 <br>
 
-                <div class="input-group mb-3 w-50">
-                    <label class="input-group-text input-group-text-medium" for="energy-data">Upload Data</label>
+                <div class="input-group mb-3">
+                    <label class="input-group-text input-group-text-medium" for="energy-data" data-toggle="tooltip" title="Upload .xlsx file. Each row represents a day of data and each column represents the kWh used in a 30 minute time period. Therefore, there must be 48 columns in each row.">Upload Data</label>
                     <input id="file-input" type="file" class="form-control" id="energy-data" accept=".xlsx">
                     <div class="invalid-feedback">
                     </div>
@@ -64,15 +66,15 @@
 
                 <br><br>
 
-                <div class="input-group w-25">
-                    <span class="input-group-text" style="width: 130px">Solar tariff rate</span>
+                <div class="input-group">
+                    <span class="input-group-text">Solar tariff rate</span>
                     <input id="solar-tariff-rate" type="number" class="form-control" placeholder="$/kWh">
                     <div class="invalid-feedback">
                     </div>
                 </div>
                 <br>
 
-                <div class="input-group w-25">
+                <div class="input-group">
                     <span class="input-group-text" style="width: 130px">Daily charge</span>
                     <input id="daily-charge" type="number" class="form-control" placeholder="$">
                     <div class="invalid-feedback">
@@ -81,7 +83,7 @@
                 <br>
 
                 <div id="fixed-rate">
-                    <div class="input-group w-25">
+                    <div class="input-group">
                         <span class="input-group-text" style="width: 130px">Rate</span>
                         <input id="fixed-rate-input" type="number" class="form-control" placeholder="$/kWh">
                         <div class="invalid-feedback"></div>
@@ -96,22 +98,22 @@
                     <div class="indent-in-1">
                         <h5>Weekday</h5>
                         <div id="summer-weekday-tou">
-                            <div class="input-group mb-3 w-75">
+                            <div class="input-group mb-3">
                                 <span class="input-group-text">Peak</span>
                                 <input type="number" class="sum wday peak cost form-control" placeholder="$"><div class="invalid-feedback"></div>
-                                <span class="input-group-text">Times</span>
+                                <span class="input-group-text" data-toggle="tooltip" title="The hour times for this time period. For example, if peak times are 11am to 3pm and 7pm and 9pm, enter: 11-14,19,21">Times</span>
                                 <input type="text" class="sum wday peak times form-control"><div class="invalid-feedback"></div>
                             </div>
-                            <div class="input-group mb-3 w-75">
+                            <div class="input-group mb-3">
                                 <span class="input-group-text">Off-peak</span>
                                 <input type="number" class="sum wday offp cost form-control" placeholder="$"><div class="invalid-feedback"></div>
-                                <span class="input-group-text">Times</span>
+                                <span class="input-group-text" data-toggle="tooltip" title="The hour times for this time period. For example, if peak times are 11am to 3pm and 7pm and 9pm, enter: 11-14,19,21">Times</span>
                                 <input type="text" class="sum wday offp times form-control"><div class="invalid-feedback"></div>
                             </div>
-                            <div class="input-group mb-3 w-75">
+                            <div class="input-group mb-3">
                                 <span class="input-group-text">Shoulder</span>
                                 <input type="number" class="sum wday sh cost form-control" placeholder="$"><div class="invalid-feedback"></div>
-                                <span class="input-group-text">Times</span>
+                                <span class="input-group-text" data-toggle="tooltip" title="The hour times for this time period. For example, if peak times are 11am to 3pm and 7pm and 9pm, enter: 11-14,19,21">Times</span>
                                 <input type="text" class="sum wday sh times form-control"><div class="invalid-feedback"></div>
                             </div>
                         </div>
@@ -119,16 +121,16 @@
 
                         <h5>Weekend</h5>
                         <div id="summer-weekend-tou">
-                            <div class="input-group mb-3 w-75">
+                            <div class="input-group mb-3">
                                 <span class="input-group-text">Off-peak</span>
                                 <input type="number" class="sum wend offp cost form-control" placeholder="$"><div class="invalid-feedback"></div>
-                                <span class="input-group-text">Times</span>
+                                <span class="input-group-text" data-toggle="tooltip" title="The hour times for this time period. For example, if peak times are 11am to 3pm and 7pm and 9pm, enter: 11-14,19,21">Times</span>
                                 <input type="text" class="sum wend offp times form-control"><div class="invalid-feedback"></div>
                             </div>
-                            <div class="input-group mb-3 w-75">
+                            <div class="input-group mb-3">
                                 <span class="input-group-text">Shoulder</span>
                                 <input type="number" class="sum wend sh cost form-control" placeholder="$"><div class="invalid-feedback"></div>
-                                <span class="input-group-text">Times</span>
+                                <span class="input-group-text" data-toggle="tooltip" title="The hour times for this time period. For example, if peak times are 11am to 3pm and 7pm and 9pm, enter: 11-14,19,21">Times</span>
                                 <input type="text" class="sum wend sh times form-control"><div class="invalid-feedback"></div>
                             </div>
                         </div>
@@ -139,16 +141,16 @@
                     <br>
                     <h4>Autumn Period: 1 Apr - 31 May</h4>
                     <div id="autumn-tou indent-in-1">
-                        <div class="input-group mb-3 w-75">
+                        <div class="input-group mb-3">
                             <span class="input-group-text">Off-peak</span>
                             <input type="number" class="aut offp cost form-control" placeholder="$"><div class="invalid-feedback"></div>
-                            <span class="input-group-text">Times</span>
+                            <span class="input-group-text" data-toggle="tooltip" title="The hour times for this time period. For example, if peak times are 11am to 3pm and 7pm and 9pm, enter: 11-14,19,21">Times</span>
                             <input type="text" class="aut offp times form-control"><div class="invalid-feedback"></div>
                         </div>
-                        <div class="input-group mb-3 w-75">
+                        <div class="input-group mb-3">
                             <span class="input-group-text">Shoulder</span>
                             <input type="number" class="aut sh cost form-control" placeholder="$"><div class="invalid-feedback"></div>
-                            <span class="input-group-text">Times</span>
+                            <span class="input-group-text" data-toggle="tooltip" title="The hour times for this time period. For example, if peak times are 11am to 3pm and 7pm and 9pm, enter: 11-14,19,21">Times</span>
                             <input type="text" class="aut sh times form-control"><div class="invalid-feedback"></div>
                         </div>
                     </div>
@@ -159,22 +161,22 @@
                     <div class="indent-in-1">
                         <h5>Weekday</h5>
                         <div id="winter-weekday-tou">
-                            <div class="input-group mb-3 w-75">
+                            <div class="input-group mb-3">
                                 <span class="input-group-text">Peak</span>
                                 <input type="number" class="win wday peak cost form-control" placeholder="$"><div class="invalid-feedback"></div>
-                                <span class="input-group-text">Times</span>
+                                <span class="input-group-text" data-toggle="tooltip" title="The hour times for this time period. For example, if peak times are 11am to 3pm and 7pm and 9pm, enter: 11-14,19,21">Times</span>
                                 <input type="text" class="win wday peak times form-control"><div class="invalid-feedback"></div>
                             </div>
-                            <div class="input-group mb-3 w-75">
+                            <div class="input-group mb-3">
                                 <span class="input-group-text">Off-peak</span>
                                 <input type="number" class="win wday offp cost form-control" placeholder="$"><div class="invalid-feedback"></div>
-                                <span class="input-group-text">Times</span>
+                                <span class="input-group-text" data-toggle="tooltip" title="The hour times for this time period. For example, if peak times are 11am to 3pm and 7pm and 9pm, enter: 11-14,19,21">Times</span>
                                 <input type="text" class="win wday offp times form-control"><div class="invalid-feedback"></div>
                             </div>
-                            <div class="input-group mb-3 w-75">
+                            <div class="input-group mb-3">
                                 <span class="input-group-text">Shoulder</span>
                                 <input type="number" class="win wday sh cost form-control" placeholder="$"><div class="invalid-feedback"></div>
-                                <span class="input-group-text">Times</span>
+                                <span class="input-group-text" data-toggle="tooltip" title="The hour times for this time period. For example, if peak times are 11am to 3pm and 7pm and 9pm, enter: 11-14,19,21">Times</span>
                                 <input type="text" class="win wday sh times form-control"><div class="invalid-feedback"></div>
                             </div>
                         </div>
@@ -182,16 +184,16 @@
                         
                         <h5>Weekend</h5>
                         <div id="winter-weekday-tou">
-                            <div class="input-group mb-3 w-75">
+                            <div class="input-group mb-3">
                                 <span class="input-group-text">Off-peak</span>
                                 <input type="number" class="win wend offp cost form-control" placeholder="$"><div class="invalid-feedback"></div>
-                                <span class="input-group-text">Times</span>
+                                <span class="input-group-text" data-toggle="tooltip" title="The hour times for this time period. For example, if peak times are 11am to 3pm and 7pm and 9pm, enter: 11-14,19,21">Times</span>
                                 <input type="text" class="win wend offp times form-control"><div class="invalid-feedback"></div>
                             </div>
-                            <div class="input-group mb-3 w-75">
+                            <div class="input-group mb-3">
                                 <span class="input-group-text">Shoulder</span>
                                 <input type="number" class="win wend sh cost form-control" placeholder="$"><div class="invalid-feedback"></div>
-                                <span class="input-group-text">Times</span>
+                                <span class="input-group-text" data-toggle="tooltip" title="The hour times for this time period. For example, if peak times are 11am to 3pm and 7pm and 9pm, enter: 11-14,19,21">Times</span>
                                 <input type="text" class="win wend sh times form-control"><div class="invalid-feedback"></div>
                             </div>
                         </div>
@@ -200,16 +202,16 @@
                     <br>
                     <h4>Spring Period: 1 Sep - 31 Oct</h4>
                     <div id="sprint-tou indent-in-1">
-                        <div class="input-group mb-3 w-75">
+                        <div class="input-group mb-3">
                             <span class="input-group-text">Off-peak</span>
                             <input type="number" class="spr offp cost form-control" placeholder="$"><div class="invalid-feedback"></div>
-                            <span class="input-group-text">Times</span>
+                            <span class="input-group-text" data-toggle="tooltip" title="The hour times for this time period. For example, if peak times are 11am to 3pm and 7pm and 9pm, enter: 11-14,19,21">Times</span>
                             <input type="text" class="spr offp times form-control"><div class="invalid-feedback"></div>
                         </div>
-                        <div class="input-group mb-3 w-75">
+                        <div class="input-group mb-3">
                             <span class="input-group-text">Shoulder</span>
                             <input type="number" class="spr sh cost form-control" placeholder="$"><div class="invalid-feedback"></div>
-                            <span class="input-group-text">Times</span>
+                            <span class="input-group-text" data-toggle="tooltip" title="The hour times for this time period. For example, if peak times are 11am to 3pm and 7pm and 9pm, enter: 11-14,19,21">Times</span>
                             <input type="text" class="spr sh times form-control"><div class="invalid-feedback"></div>
                         </div>
                     </div>
@@ -218,7 +220,8 @@
                 </div>
 
                 <hr><br>
-                <div id="fill-form" style="display: none">Please complete all components</div>
+                <div id="fill-form" style="display: none">Please try again once all components have been filled.</div>
+                <br>
                 <button id="calculate" type="button" class="btn btn-primary">Calculate your bill</button>
             </form>
             <br><br><br><br><br><br><br><br><br><br><br><br>

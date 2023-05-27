@@ -1,5 +1,9 @@
 $(document).ready(function(){
 
+    // ToolTips
+    $('[data-toggle="tooltip"]').tooltip();
+
+
     const url = 'http://localhost:6578';
     let activeState = ''
 
