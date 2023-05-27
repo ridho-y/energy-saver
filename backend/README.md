@@ -1,5 +1,6 @@
-# Energy Saver BACKEND
+# flask
+A minimal Flask web application.
 
-The backend for Energy Saver was developed using `Python 3` and modules such as `Flask`.
+For a step-by-step guide to deploying on [Railway](https://railway.app/?referralCode=alphasec), see [this](https://alphasec.io/how-to-deploy-a-python-flask-app-on-railway/) post, or click the button below.
 
-Run `python3 -m server` in src to start the backend server.
+[![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/new/template/igzwwg?referralCode=alphasec)
