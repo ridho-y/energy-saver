@@ -38,7 +38,7 @@ $(document).ready(function(){
             const items = $(stndItems + ', #fixed-rate-input')
             let r = true
             items.each(function() {
-                if ($(this).val() == '') {
+                if ($(this).val() === '') {
                     r = false
                     return false
                 }
@@ -48,7 +48,7 @@ $(document).ready(function(){
             const items = $(stndItems + ', .sum, .aut, .win, .spr')
             let r = true
             items.each(function() {
-                if ($(this).val() == '') {
+                if ($(this).val() === '') {
                     r = false
                     return false
                 } 
