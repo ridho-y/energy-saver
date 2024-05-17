@@ -1,10 +1,10 @@
+import { costCalculator } from "./calculator.js";
+
 $(document).ready(function(){
 
     // ToolTips
     $('[data-toggle="tooltip"]').tooltip();
 
-
-    const url = 'https://energy-saver-production.up.railway.app/';
     let activeState = ''
 
     const fixedRateButton = $('#fixed-rate-button')
@@ -138,7 +138,7 @@ $(document).ready(function(){
     }
     
     calculate.click(async () => {
-        
+        console.log('wooo')
         if (!formFilled(activeState)) {
             $('#fill-form').css('display', 'block')
             return
@@ -147,7 +147,6 @@ $(document).ready(function(){
         }
 
         const dataArray = await createDataArray();
-        // const dataArray = []
 
         const getVals = new Promise((res, rej) => {
             
@@ -179,24 +178,9 @@ $(document).ready(function(){
         })
         
         getVals.then(d => {
-            fetch(url, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': "application/json",
-                    'Accept': "application/json"
-                },
-                body: JSON.stringify(d)
-            }).then(res => res.json())
-            .then(res => {
-                console.log(res.total)
-                $('#cost').text('Your bill will cost $' + res.total.toFixed(2))
-            })
-            .catch((e) => {
-                throw new Error(e);
-            })
+            console.log(d)
+            const res = costCalculator(d)
+            $('#cost').text('Your bill will cost $' + res.total.toFixed(2))
         });
     })
-
-
-
 });

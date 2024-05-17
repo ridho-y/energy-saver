@@ -123,8 +123,8 @@ $(document).ready(function() {
 
             if (num.includes('-')) {
                 let range = num.split('-')
-                if (range[0] >= range[1]) {
-                    invalid(jElement, 'Num1-Num2: Num1 cannot be lesser than or equal to Num2');
+                if (+range[0] >= +range[1]) {
+                    invalid(jElement, `Num1-Num2: Num1 (${range[0]}) cannot be greater than or equal to Num2 (${range[1]})`);
                     return null;
                 } else if (range[0] < 0 || range[0] > 23 || range[1] < 0 || range[1] > 23) {
                     invalid(jElement, 'Time cannot be less than 0 or greater than 23');
