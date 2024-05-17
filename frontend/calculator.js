@@ -35,7 +35,6 @@ function dayCost(date, dailyCharge, energyUsePerHalfHr, rate) {
 
     // Get the rates
     const { season, wdayOrWend } = determineDayAlloc(date);
-    console.log(rate[season][wdayOrWend]);
 
     const rates = Object.values(rate[season][wdayOrWend]);
 

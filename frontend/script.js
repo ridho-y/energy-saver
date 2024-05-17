@@ -67,7 +67,7 @@ $(document).ready(function(){
                 let commsep = num.split(',');
                 for (let i = 0; i < commsep.length; i++) {
                     if (commsep[i].includes('-')) {
-                        t = commsep[i].split('-')
+                        let t = commsep[i].split('-')
                         for (let j = +t[0]; j <= t[1]; j++) {
                             times.push(j)
                         }
@@ -77,7 +77,7 @@ $(document).ready(function(){
                 }
             } else {
                 if (num.includes('-')) {
-                    t = num.split('-')
+                    let t = num.split('-')
                     for (let j = +t[0]; j <= t[1]; j++) {
                         times.push(j)
                     }
@@ -89,7 +89,7 @@ $(document).ready(function(){
             return times;
         }
 
-        data = {
+        const data = {
             'summer': {
                 'weekday': { 
                     'peak': {'cost': +$('.sum.wday.peak.cost').val(), 'times': timeLister($('.sum.wday.peak.times').val())},
@@ -138,7 +138,6 @@ $(document).ready(function(){
     }
     
     calculate.click(async () => {
-        console.log('wooo')
         if (!formFilled(activeState)) {
             $('#fill-form').css('display', 'block')
             return
@@ -178,7 +177,6 @@ $(document).ready(function(){
         })
         
         getVals.then(d => {
-            console.log(d)
             const res = costCalculator(d)
             $('#cost').text('Your bill will cost $' + res.total.toFixed(2))
         });
