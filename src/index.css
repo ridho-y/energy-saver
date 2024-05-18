@@ -49,3 +49,13 @@ input {
         font-size: 11px;
     }
 }
+
+.contact-logo {
+    width: 24px;
+    fill: black;
+}
+
+.links {
+    display: flex;
+    gap: 15px;
+}
