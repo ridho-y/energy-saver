@@ -180,6 +180,8 @@ $(document).ready(function(){
             } else {
                 throw new Error('Invalid active state');
             }
+
+            console.log(d)
         
             res(d);
         })
