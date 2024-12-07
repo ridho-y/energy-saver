@@ -89,55 +89,62 @@ $(document).ready(function(){
             return times;
         }
 
+        const parseCostInput = (costInput) => {
+            return +$(costInput).val() / 100
+        }
+
         const data = {
             'summer': {
                 'weekday': { 
-                    'peak': {'cost': +$('.sum.wday.peak.cost').val(), 'times': timeLister($('.sum.wday.peak.times').val())},
-                    'off-peak': {'cost': +$('.sum.wday.offp.cost').val(), 'times': timeLister($('.sum.wday.offp.times').val())},
-                    'shoulder': {'cost': +$('.sum.wday.sh.cost').val(), 'times': timeLister($('.sum.wday.sh.times').val())}
+                    'peak': {'cost': parseCostInput('.sum.wday.peak.cost'), 'times': timeLister($('.sum.wday.peak.times').val())},
+                    'off-peak': {'cost': parseCostInput('.sum.wday.offp.cost'), 'times': timeLister($('.sum.wday.offp.times').val())},
+                    'shoulder': {'cost': parseCostInput('.sum.wday.sh.cost'), 'times': timeLister($('.sum.wday.sh.times').val())}
                     },
                 'weekend': {
-                    'off-peak': {'cost': +$('.sum.wend.offp.cost').val(), 'times': timeLister($('.sum.wend.offp.times').val())},
-                    'shoulder': {'cost': +$('.sum.wend.sh.cost').val(), 'times': timeLister($('.sum.wend.sh.times').val())}
+                    'off-peak': {'cost': parseCostInput('.sum.wend.offp.cost'), 'times': timeLister($('.sum.wend.offp.times').val())},
+                    'shoulder': {'cost': parseCostInput('.sum.wend.sh.cost'), 'times': timeLister($('.sum.wend.sh.times').val())}
                     }
                 },
             'autumn': {
                 'weekday': { 
-                    'off-peak': {'cost': +$('.aut.offp.cost').val(), 'times': timeLister($('.aut.offp.times').val())},
-                    'shoulder': {'cost': +$('.aut.sh.cost').val(), 'times': timeLister($('.aut.sh.times').val())},
+                    'off-peak': {'cost': parseCostInput('.aut.offp.cost'), 'times': timeLister($('.aut.offp.times').val())},
+                    'shoulder': {'cost': parseCostInput('.aut.sh.cost'), 'times': timeLister($('.aut.sh.times').val())},
                     },
                 'weekend': {
-                    'off-peak': {'cost': +$('.aut.offp.cost').val(), 'times': timeLister($('.aut.offp.times').val())},
-                    'shoulder': {'cost': +$('.aut.sh.cost').val(), 'times': timeLister($('.aut.sh.times').val())},
+                    'off-peak': {'cost': parseCostInput('.aut.offp.cost'), 'times': timeLister($('.aut.offp.times').val())},
+                    'shoulder': {'cost': parseCostInput('.aut.sh.cost'), 'times': timeLister($('.aut.sh.times').val())},
                     }
                 },
             'winter': {
                 'weekday': { 
-                    'peak': {'cost': +$('.win.wday.peak.cost').val(), 'times': timeLister($('.win.wday.peak.times').val())},
-                    'off-peak': {'cost': +$('.win.wday.offp.cost').val(), 'times': timeLister($('.win.wday.offp.times').val())},
-                    'shoulder': {'cost': +$('.win.wday.sh.cost').val(), 'times': timeLister($('.win.wday.sh.times').val())}
+                    'peak': {'cost': parseCostInput('.win.wday.peak.cost'), 'times': timeLister($('.win.wday.peak.times').val())},
+                    'off-peak': {'cost': parseCostInput('.win.wday.offp.cost'), 'times': timeLister($('.win.wday.offp.times').val())},
+                    'shoulder': {'cost': parseCostInput('.win.wday.sh.cost'), 'times': timeLister($('.win.wday.sh.times').val())}
                     },
                 'weekend': {
-                    'off-peak': {'cost': +$('.win.wend.offp.cost').val(), 'times': timeLister($('.win.wend.offp.times').val())},
-                    'shoulder': {'cost': +$('.win.wend.sh.cost').val(), 'times': timeLister($('.win.wend.sh.times').val())}
+                    'off-peak': {'cost': parseCostInput('.win.wend.offp.cost'), 'times': timeLister($('.win.wend.offp.times').val())},
+                    'shoulder': {'cost': parseCostInput('.win.wend.sh.cost'), 'times': timeLister($('.win.wend.sh.times').val())}
                     }
                 },
             'spring': {
                 'weekday': { 
-                    'off-peak': {'cost': +$('.spr.offp.cost').val(), 'times': timeLister($('.spr.offp.times').val())},
-                    'shoulder': {'cost': +$('.spr.sh.cost').val(), 'times': timeLister($('.spr.sh.times').val())},
+                    'off-peak': {'cost': parseCostInput('.spr.offp.cost'), 'times': timeLister($('.spr.offp.times').val())},
+                    'shoulder': {'cost': parseCostInput('.spr.sh.cost'), 'times': timeLister($('.spr.sh.times').val())},
                     },
                 'weekend': {
-                    'off-peak': {'cost': +$('.spr.offp.cost').val(), 'times': timeLister($('.spr.offp.times').val())},
-                    'shoulder': {'cost': +$('.spr.sh.cost').val(), 'times': timeLister($('.spr.sh.times').val())},
+                    'off-peak': {'cost': parseCostInput('.spr.offp.cost'), 'times': timeLister($('.spr.offp.times').val())},
+                    'shoulder': {'cost': parseCostInput('.spr.sh.cost'), 'times': timeLister($('.spr.sh.times').val())},
                     }
                 },
             }
 
         return data;
     }
-    
+
+    // On click calculate
     calculate.click(async () => {
+
+        // Check if the form is filled
         if (!formFilled(activeState)) {
             $('#fill-form').css('display', 'block')
             return
@@ -159,6 +166,7 @@ $(document).ready(function(){
                 'dailyCharge': +$('#daily-charge').val(),
             };
 
+            // Get TOU or Fixed Rate data
             if (activeState == 'fixed-rate') {
                 d = {
                     ...d,
