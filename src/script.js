@@ -175,6 +175,8 @@ $(document).ready(function(){
         
             res(d);
         })
+
+        console.log(d)
         
         getVals.then(d => {
             const res = costCalculator(d)
