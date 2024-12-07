@@ -170,7 +170,7 @@ $(document).ready(function(){
             if (activeState == 'fixed-rate') {
                 d = {
                     ...d,
-                    'fixedRate': +$('#fixed-rate-input').val(),
+                    'fixedRate': parseCostInput('#fixed-rate-input'),
                 }
             } else if (activeState == 'time-of-use') {
                 d = {
