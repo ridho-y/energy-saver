@@ -158,7 +158,7 @@ $(document).ready(function(){
                 'solarTariff': +$('#solar-tariff-rate').val(),
                 'dailyCharge': +$('#daily-charge').val(),
             };
-
+            console.log('test')
             if (activeState == 'fixed-rate') {
                 d = {
                     ...d,
