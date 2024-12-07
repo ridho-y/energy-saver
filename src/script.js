@@ -59,6 +59,10 @@ $(document).ready(function(){
         }
     }
 
+    const parseCostInput = (costInput) => {
+        return +$(costInput).val() / 100
+    }
+
     function timeOfUseData() {
 
         const timeLister = (num) => {
@@ -87,10 +91,6 @@ $(document).ready(function(){
             }
 
             return times;
-        }
-
-        const parseCostInput = (costInput) => {
-            return +$(costInput).val() / 100
         }
 
         const data = {
@@ -162,8 +162,8 @@ $(document).ready(function(){
                 'dateEnd': $('#date-end').val(),
                 'data': dataArray,
                 'solarCollected': +$('#solar-collected').val(),
-                'solarTariff': +$('#solar-tariff-rate').val(),
-                'dailyCharge': +$('#daily-charge').val(),
+                'solarTariff': parseCostInput('#solar-tariff-rate'),
+                'dailyCharge': parseCostInput('#daily-charge'),
             };
 
             // Get TOU or Fixed Rate data
